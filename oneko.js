@@ -254,6 +254,7 @@
     }
     const coinEl = document.createElement('div');
     coinEl.className = 'coin';
+    coinEl.id = 'coin';
     coinEl.style.position = 'fixed';
     coinEl.style.width = '16px';
     coinEl.style.height = '16px';
