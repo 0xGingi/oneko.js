@@ -171,6 +171,12 @@
         avalibleIdleAnimations[
           Math.floor(Math.random() * avalibleIdleAnimations.length)
         ];
+        for (const coin of coins) {
+          coin.el.parentNode.removeChild(coin.el);
+        }
+        coins = [];
+        coinCounter = 0;
+        updateCoinCounterDisplay();
     }
 
     switch (idleAnimation) {
@@ -243,6 +249,9 @@
   }
   setInterval(spawnCoin, 5000);
   function spawnCoin() {
+    if (coins.length >= 10) {
+      return;
+    }
     const coinEl = document.createElement('div');
     coinEl.className = 'coin';
     coinEl.style.position = 'fixed';
