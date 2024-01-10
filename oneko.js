@@ -292,8 +292,8 @@
     const counterEl = document.createElement('div');
     counterEl.id = 'coin-counter';
     counterEl.style.position = 'fixed';
-    counterEl.style.left = '10px';
-    counterEl.style.top = '10px';
+    counterEl.style.right = '10px';
+    counterEl.style.bottom = '10px';
     counterEl.textContent = 'Coins: 0';
     document.body.appendChild(counterEl);
   }
