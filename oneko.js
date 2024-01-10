@@ -8,8 +8,11 @@
   if (isReducedMotion) return;
 
   const nekoEl = document.createElement("div");
+  let coins = [];
 
+  let coinCounter = 0;
   let nekoPosX = 32;
+
   let nekoPosY = 32;
 
   let mousePosX = 0;
@@ -111,6 +114,8 @@
     });
 
     window.requestAnimationFrame(onAnimationFrame);
+    addCoinCounterDisplay();
+
   }
 
   let lastFrameTimestamp;
@@ -233,6 +238,55 @@
 
     nekoEl.style.left = `${nekoPosX - 16}px`;
     nekoEl.style.top = `${nekoPosY - 16}px`;
+
+    checkForCoinCollision();
+  }
+  setInterval(spawnCoin, 5000);
+  function spawnCoin() {
+    const coinEl = document.createElement('div');
+    coinEl.className = 'coin';
+    coinEl.style.position = 'fixed';
+    coinEl.style.width = '16px';
+    coinEl.style.height = '16px';
+    coinEl.style.backgroundImage = 'url(./coin.gif)';
+    coinEl.style.imageRendering = 'pixelated';
+    const x = Math.random() * (window.innerWidth - 32);
+    const y = Math.random() * (window.innerHeight - 32);
+    coinEl.style.left = `${x}px`;
+    coinEl.style.top = `${y}px`;
+    document.body.appendChild(coinEl);
+    coins.push({ el: coinEl, x, y });
+  }
+
+  function checkForCoinCollision() {
+    coins = coins.filter(coin => {
+      const dx = nekoPosX - coin.x;
+      const dy = nekoPosY - coin.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 16) {
+        coinCounter++;
+        updateCoinCounterDisplay();
+        coin.el.parentNode.removeChild(coin.el);
+        return false;
+      }
+      return true;
+    });
+  }
+
+  function updateCoinCounterDisplay() {
+    const counterEl = document.getElementById('coin-counter');
+    counterEl.textContent = `Coins: ${coinCounter}`;
+  }
+
+  function addCoinCounterDisplay() {
+    const counterEl = document.createElement('div');
+    counterEl.id = 'coin-counter';
+    counterEl.style.position = 'fixed';
+    counterEl.style.left = '10px';
+    counterEl.style.top = '10px';
+    counterEl.textContent = 'Coins: 0';
+    document.body.appendChild(counterEl);
   }
 
   init();
