@@ -252,7 +252,7 @@
     if (coins.length >= 10) {
       return;
     }
-    //const coinEl = document.createElement('div');
+    const coinEl = document.createElement('div');
     coinEl.className = 'coin';
     coinEl.style.position = 'fixed';
     coinEl.style.width = '16px';
@@ -289,10 +289,7 @@
   }
 
   function addCoinCounterDisplay() {
-    const counterEl = document.createElement('coin-counter');
-    if (counterEl) {
-      counterEl.textContent = `Coins: ${coinCounter}`;
-  }
+    const counterEl = document.createElement('div');
     counterEl.id = 'coin-counter';
     counterEl.style.position = 'fixed';
     counterEl.style.left = '10px';
