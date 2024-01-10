@@ -1,5 +1,7 @@
 # oneko.js
 
+Fork of oneko to turn it into a simple coin collection game
+
 A hacky script I wrote to put a cat on my site.
 
 The default image is `oneko.gif` in the same directory as the script. This can be changed by adding `data-cat="yourimage.png"` to your `<script>` tag.
