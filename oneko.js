@@ -252,7 +252,7 @@
     if (coins.length >= 10) {
       return;
     }
-    const coinEl = document.createElement('div');
+    //const coinEl = document.createElement('div');
     coinEl.className = 'coin';
     coinEl.style.position = 'fixed';
     coinEl.style.width = '16px';
