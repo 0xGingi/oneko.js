@@ -170,9 +170,12 @@
           Math.floor(Math.random() * avalibleIdleAnimations.length)
         ];
         for (const coin of coins) {
-          coin.el.parentNode.removeChild(coin.el);
+          if (coin.el.parentNode) {
+            coin.el.parentNode.removeChild(coin.el);
+          }
         }
-    }
+        coins = [];
+      }
 
     switch (idleAnimation) {
       case "sleeping":
@@ -275,7 +278,15 @@
       return true;
     });
   }
-
+  
+  window.removeCoins = function() {
+    coins.forEach(coin => {
+        if (coin.el.parentNode) {
+            coin.el.parentNode.removeChild(coin.el);
+        }
+    });
+    coins = [];
+}
 
   init();
 })();
