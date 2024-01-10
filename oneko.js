@@ -289,7 +289,7 @@
   }
 
   function addCoinCounterDisplay() {
-    //const counterEl = document.createElement('coin-counter');
+    const counterEl = document.createElement('coin-counter');
     if (counterEl) {
       counterEl.textContent = `Coins: ${coinCounter}`;
   }
