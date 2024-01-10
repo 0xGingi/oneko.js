@@ -10,7 +10,6 @@
   const nekoEl = document.createElement("div");
   let coins = [];
 
-  let coinCounter = 0;
   let nekoPosX = 32;
 
   let nekoPosY = 32;
@@ -114,7 +113,6 @@
     });
 
     window.requestAnimationFrame(onAnimationFrame);
-    addCoinCounterDisplay();
 
   }
 
@@ -174,9 +172,6 @@
         for (const coin of coins) {
           coin.el.parentNode.removeChild(coin.el);
         }
-        coins = [];
-        coinCounter = 0;
-        updateCoinCounterDisplay();
     }
 
     switch (idleAnimation) {
@@ -274,8 +269,6 @@
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < 16) {
-        coinCounter++;
-        updateCoinCounterDisplay();
         coin.el.parentNode.removeChild(coin.el);
         return false;
       }
@@ -283,20 +276,6 @@
     });
   }
 
-  function updateCoinCounterDisplay() {
-    const counterEl = document.getElementById('coin-counter');
-    counterEl.textContent = `Coins: ${coinCounter}`;
-  }
-
-  function addCoinCounterDisplay() {
-   // const counterEl = document.createElement('div');
-   // counterEl.id = 'coin-counter';
-   // counterEl.style.position = 'fixed';
-   // counterEl.style.right = '10px';
-   // counterEl.style.bottom = '10px';
-   // counterEl.textContent = 'Coins: 0';
-   // document.body.appendChild(counterEl);
-  }
 
   init();
 })();
